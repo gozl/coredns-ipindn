@@ -3,8 +3,7 @@ package ipindn
 import (
 	"strconv"
 
-	"github.com/caddyserver/caddy"
-
+	"github.com/coredns/caddy"
 	"github.com/coredns/coredns/core/dnsserver"
 	"github.com/coredns/coredns/plugin"
 	clog "github.com/coredns/coredns/plugin/pkg/log"
@@ -17,10 +16,7 @@ const (
 var log = clog.NewWithPlugin(pluginName)
 
 func init() {
-	caddy.RegisterPlugin(pluginName, caddy.Plugin{
-		ServerType: "dns",
-		Action:     setup,
-	})
+	plugin.Register(pluginName, setup)
 }
 
 func setup(c *caddy.Controller) error {
